@@ -8,6 +8,15 @@ export enum PalmPosition {
   KONGWANG = '空亡'
 }
 
+export const PalmMeanings: Record<PalmPosition, string> = {
+  [PalmPosition.DAAN]: '諸事順利',
+  [PalmPosition.LIULIAN]: '運氣平平',
+  [PalmPosition.SUXI]: '時機已到',
+  [PalmPosition.CHIKOU]: '謹防小人',
+  [PalmPosition.XIAOJI]: '好事發生，耐心等待',
+  [PalmPosition.KONGWANG]: '諸事不順，事事小心'
+};
+
 export type FiveElement = '木' | '火' | '土' | '金' | '水';
 
 export interface ElementAttr {
@@ -25,14 +34,8 @@ export const ElementMap: Record<FiveElement, ElementAttr> = {
   '水': { element: '水', direction: '北方', color: '黑色', colorHex: '#334155' }
 };
 
-export const PalmDetails: Record<PalmPosition, { meaning: string; id: number }> = {
-  [PalmPosition.DAAN]: { meaning: '諸事順利', id: 1 },
-  [PalmPosition.LIULIAN]: { meaning: '運氣平平', id: 2 },
-  [PalmPosition.SUXI]: { meaning: '時機已到', id: 3 },
-  [PalmPosition.CHIKOU]: { meaning: '謹防小人', id: 4 },
-  [PalmPosition.XIAOJI]: { meaning: '好事發生，耐心等待', id: 5 },
-  [PalmPosition.KONGWANG]: { meaning: '諸事不順，事事小心', id: 6 }
-};
+export const EarthlyBranches = ["子", "丑", "寅", "卯", "辰", "巳", "午", "未", "申", "酉", "戌", "亥"];
+export const HeavenlyStems = ["甲", "乙", "丙", "丁", "戊", "己", "庚", "辛", "壬", "癸"];
 
 export const PositionsInOrder: PalmPosition[] = [
   PalmPosition.DAAN,
@@ -41,14 +44,6 @@ export const PositionsInOrder: PalmPosition[] = [
   PalmPosition.CHIKOU,
   PalmPosition.XIAOJI,
   PalmPosition.KONGWANG
-];
-
-export const EarthlyBranches = [
-  "子", "丑", "寅", "卯", "辰", "巳", "午", "未", "申", "酉", "戌", "亥"
-];
-
-export const HeavenlyStems = [
-  "甲", "乙", "丙", "丁", "戊", "己", "庚", "辛", "壬", "癸"
 ];
 
 export interface CalculationStep {
@@ -63,9 +58,12 @@ export interface MetaphysicalAnalysis {
   monthBranch: string;
   dayStem: string;
   hourBranch: string;
-  envAttr: ElementAttr;     // 月份環境
-  dayAttr: ElementAttr;     // 當日主氣
-  actionAttr: ElementAttr;  // 當下行動
+  envAttr: ElementAttr;
+  dayAttr: ElementAttr;
+  actionAttr: ElementAttr;
   dominantLevel: '月份' | '日干' | '時辰';
   suggestion: string;
+  leadingDirection: string;
+  leadingColor: string;
+  supplementaryAdvice: string;
 }
